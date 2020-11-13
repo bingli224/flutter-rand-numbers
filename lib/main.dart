@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Random 4',
+      title: 'Digits To Integer',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -51,7 +51,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _digits = 0;
+  int _result = 0;
 
   void _changeRandom() {
     setState(() {
@@ -60,7 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter = widget._random.nextInt(10000);
+      _digits = widget._random.nextInt(10000);
+      _result = widget._random.nextInt(100);
     });
   }
 
@@ -98,14 +100,17 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            /*
+            Text('$_result'.padLeft(2, '0'),
+                style: Theme.of(context).textTheme.headline1.copyWith(
+                    //fontFamily: 'MuseoModerno',
+                    //fontWeight: FontWeight.bold,
+                    )),
+            Divider(),
             Text(
-              'You have pushed the button this many times:',
-            ),
-            */
-            Text(
-              '$_counter'.padLeft(4, '0'),
-              style: Theme.of(context).textTheme.headline1,
+              '$_digits'.padLeft(4, '0'),
+              style: Theme.of(context).textTheme.headline1.copyWith(
+                  //fontFamily: 'Jura',
+                  ),
             ),
           ],
         ),
