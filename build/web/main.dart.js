@@ -41227,7 +41227,7 @@ N.Rt.prototype={
 $1:function(a){return!0},
 $S:33}
 F.uQ.prototype={
-J:function(a,b){var s="Random 4",r=X.X5(null,C.lC)
+J:function(a,b){var s="Digits To Integer",r=X.X5(null,C.lC)
 return new S.nG(new F.nT(C.ry,s,null),s,r,!1,null)}}
 F.nT.prototype={
 aH:function(){return new F.q9(C.m)}}
