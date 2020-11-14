@@ -62,15 +62,13 @@ class _MyHomePageState extends State<MyHomePage> {
         (widget._random.nextInt(9000) + 1000).toString().codeUnits);
     var _foundZero = false;
     for (var i = 0; i < _digitList.length; i++) {
-      print(" :: ${_digitList[i]} ${String.fromCharCode(_digitList[i])}");
       if (_digitList[i] == 0x30) {
         if (_foundZero) {
-          _digitList[i] = widget._random.nextInt(9) + 1;
+          _digitList[i] = widget._random.nextInt(9) + 0x31;
         } else {
           _foundZero = true;
         }
       }
-      //_digitList[i] += 0x30;
     }
     setState(() {
       _digits = String.fromCharCodes(_digitList);
