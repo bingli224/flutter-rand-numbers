@@ -1,5 +1,6 @@
 import 'dart:html';
 import 'dart:math';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
@@ -52,17 +53,27 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _digits = 0;
+  //int _digits = 0;
+  String _digits = "";
   int _result = 0;
 
   void _changeRandom() {
+    var _digitList = Uint8List.fromList(
+        (widget._random.nextInt(9000) + 1000).toString().codeUnits);
+    var _foundZero = false;
+    for (var i = 0; i < _digitList.length; i++) {
+      print(" :: ${_digitList[i]} ${String.fromCharCode(_digitList[i])}");
+      if (_digitList[i] == 0x30) {
+        if (_foundZero) {
+          _digitList[i] = widget._random.nextInt(9) + 1;
+        } else {
+          _foundZero = true;
+        }
+      }
+      //_digitList[i] += 0x30;
+    }
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _digits = widget._random.nextInt(10000);
+      _digits = String.fromCharCodes(_digitList);
       _result = widget._random.nextInt(100);
     });
   }
